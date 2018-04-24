@@ -11,13 +11,13 @@ Servo joint6;
   int j1 = 170;
   int j2 = 90;
   int j3 = 150;
-  int j4 = 30;
+  int j4 = 30;    // Initial joint angles on start up
   int j5 = 80;
   int j6 = 70;
   int j1New;
   int j2New;
   int j3New;
-  int j4New;
+  int j4New;      // Stores joint angles from .txt file
   int j5New;
   int j6New;
   int inputAngle;
@@ -38,19 +38,19 @@ void setup() {
   joint1.write(j1);
   joint2.write(j2);
   joint3.write(j3);
-  joint4.write(j4);
+  joint4.write(j4);     // Initialise each joint on start up
   joint5.write(j5);
   joint6.write(j6);
   
   delay(5000);
   
-  homePosition(j1, j2, j3, j4, inputAngle);
+  homePosition(j1, j2, j3, j4, inputAngle);   // Robot in home position
   
 }
 
 void homePosition(int &j1, int &j2, int &j3, int &j4, int &inputAngle){
 
-  Serial.println("Returning to home position...");
+  Serial.println("Returning to home position...");    // Informs user in CoolTerm screen
   Serial.println("");
 
   delay(1000);
@@ -71,7 +71,7 @@ void homePosition(int &j1, int &j2, int &j3, int &j4, int &inputAngle){
 
 void sleepPosition(int &j1, int &j2, int &j3, int &j4, int &inputAngle){
 
-  Serial.println("Returning to sleep position...");
+  Serial.println("Returning to sleep position...");   // Informs user in CoolTerm screen
   Serial.println("");
 
   delay(1000);
@@ -340,7 +340,7 @@ void checkConnection(){
 
     if(iter2 == 0){
 
-      Serial.println("Press Enter to Establish Connection");
+      Serial.println("Press Enter to Establish Connection");    // Informs user in CoolTerm screen
       Serial.println("");
     }
 
@@ -358,7 +358,7 @@ void checkConnection(){
 
       if(dataBit == 10){
         
-        Serial.println("Connection Established");
+        Serial.println("Connection Established");   // Informs user in CoolTerm screen
         Serial.println("");
         homePosition(j1, j2, j3, j4, inputAngle);
         textHomePosition(j1, j2, j3, j4, j5, j6);
@@ -369,7 +369,7 @@ void checkConnection(){
         Serial.println("Or to send the robot to sleep, follow:");
         Serial.println("");
         Serial.println("Click Connection > Send Text File > 'Search sleep.txt' > Open");
-        Serial.println("");
+        Serial.println("");   // Informs user in CoolTerm screen
         iter = 1;
         return;
       }
@@ -399,6 +399,7 @@ void textHomePosition(int &j1, int &j2, int &j3, int &j4, int &j5, int &j6){
      Serial.print(j6);
      Serial.println(" Degrees");
      Serial.println("");
+     // Informs user in CoolTerm screen
 }
 
 void readIncomingData(int &j1New, int &j2New, int &j3New, int &j4new, int &j5New, int &j6New, int &width, int &height){
@@ -499,7 +500,7 @@ void readIncomingData(int &j1New, int &j2New, int &j3New, int &j4new, int &j5New
 
 void actuateJoints(int &j1New, int &j2New, int &j3New, int &j4New, int &j1, int &j2, int &j3, int &j4){
 
-  Serial.println("Joints Actuated:");
+  Serial.println("Joints Actuated:");   // Informs user in CoolTerm screen
 
   if(j4New != j4){
 
@@ -543,7 +544,7 @@ void actuateJoints(int &j1New, int &j2New, int &j3New, int &j4New, int &j1, int 
 
 void grabObject(int &inputAngle){
 
-  Serial.println("Grabbing Object...");
+  Serial.println("Grabbing Object...");   // Informs user in CoolTerm screen
   Serial.println("");
   inputAngle = 140;
   j6 = commandJoint6(j6, inputAngle);
@@ -554,7 +555,7 @@ void grabObject(int &inputAngle){
 
 void dropPosition(int &j1, int &j2, int &j3, int &j4, int &j6, int &inputAngle){
 
-  Serial.println("Dropping Off Object...");
+  Serial.println("Dropping Off Object...");   // Informs user in CoolTerm screen
   Serial.println("");
   delay(1000);
   inputAngle = 130;
@@ -590,4 +591,3 @@ void loop(){
   
 }
 
- 
